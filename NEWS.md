@@ -1,11 +1,25 @@
-# epitopefindr 1.1.27
 
+# epitopefindr 1.1.30 (2020-09-19)
+## Minor changes
+- Keep blast alignment table as data.table::data.table to fix changes in R 4.0
+- changed pdf merge default to pdfuniter to get around rJava issue
+
+# epitopefindr 1.1.29 (2020-05-30)
+## Minor changes
+- Specify remote sources for Bioconductor and Github package dependencies.
+
+# epitopefindr 1.1.28 (2020-05-07)
+## Minor changes
+- multiple sequence alignment consensus sequence defaults changed. Consensus sequence type = "upperlower", thresh = c(100, 50). See ?msa::msaConsensusSequence for more information.
+
+# epitopefindr 1.1.27 (2020-05-06)
 ## Major Changes  
 - Added parameter `peptide.once.per.group` to `indexGroups()` (and also wrapper function `epfind()`) to control whether or not to restrict epitope groups to a maximum of one occurrence of a given peptide. Default value TRUE.  
 - `epfind()` now write a log file to capture session info and input parameters.   
 
 ## Minor changes  
 - More uniformly included `close(pb)` to conclude instances of `pb <- utils::txtProgressBar(...)` or `pb <- epitopefindr::epPB(...)`.
+- epitopeSummary output table sorting modification. group number coerced to numeric.
 
 # epitopefindr 1.1.26
 ## Breaking changes
