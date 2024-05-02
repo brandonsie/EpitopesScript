@@ -4,7 +4,9 @@
 \name{pairwise_viral_hits}
 \alias{pairwise_viral_hits}
 \title{Virscan hits from AVARDA patient 1}
-\format{A Biostrings::AAStringSet object with 159 named peptide sequences.}
+\format{
+A Biostrings::AAStringSet object with 159 named peptide sequences.
+}
 \source{
 Larman Lab PhIP-Seq NGS.
 }

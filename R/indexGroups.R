@@ -155,7 +155,7 @@ indexGroups <- function(blast, fasta, mode="any", aln.size, peptide.once.per.gro
 
     for(i in 1:length(epitopes)){
       utils::setTxtProgressBar(pb, i)
-      print(paste("[[--new i--]]", i)) #(!) debug
+      #print(paste("[[--new i--]]", i)) #(!) debug
 
       # Get current epitope and all epitopes that align to it
       current <- names(epitopes)[i]
@@ -195,7 +195,7 @@ indexGroups <- function(blast, fasta, mode="any", aln.size, peptide.once.per.gro
       # representing groups along with current.plus.aln
       #(!) need to prevent duplicate pep entry here
 
-      print(paste("[length j]", length(current.plus.aln)))#(!) debug
+      #print(paste("[length j]", length(current.plus.aln)))#(!) debug
       for(j in 1:length(current.plus.aln)){
         if(j%%20==0) print(paste("j", j)) #(!) debug
         # get peptide names of previoulsy grouped peptides for upcoming comparison

@@ -89,7 +89,15 @@ indexEpitopes <- function(blast, index, aln.size){
   # == == == == == C. Update blast. == =
   #amend blast positions to be trimmed to corresponding overlap index ep
 
+
+  # blast.index <- blast.index[(blast.index$qEnd > blast.index$qStart) &
+  #                              (blast.index$SEnd > blast.index$sStart)]
   for(i in 1:nrow(blast.index)){ #for each
+
+
+
+
+    # continue with normal trimming
     if(gpos[gpos$qStart == blast.index$qStart[i] &
             gpos$qEnd == blast.index$qEnd[i],] %>% nrow == 0){
       #ignore exact matches
@@ -110,26 +118,30 @@ indexEpitopes <- function(blast, index, aln.size){
       pos <- c(qpos, spos) %>% (stats::na.omit) %>% as.numeric
 
 
-      if(length(pos)>0){
+      # if(length(pos)>0){
+      if((length(pos)>0)){
 
-        gOverlap <- isOverlapping(blast.index[i,c("qStart","qEnd")],gpos, aln.size)
-        for(j in gOverlap){ #for each position of gpos that overlaps
+      # 2024-04-24. 1.1.31. add continionts to remove nonsense alignments with qend<qstart or send<sstart
+        if((blast.index$qEnd[i] > blast.index$qStart[i]) & (blast.index$sEnd[i] > blast.index$sStart[i])){
+          gOverlap <- isOverlapping(blast.index[i,c("qStart","qEnd")],gpos, aln.size)
+          for(j in gOverlap){ #for each position of gpos that overlaps
 
-          dstart <- gpos[j, 1] - blast.index[i, "qStart"] #g-b. positive
-          dend <- gpos[j, 2] - blast.index[i, "qEnd"] #g-b. negative
+            dstart <- gpos[j, 1] - blast.index[i, "qStart"] #g-b. positive
+            dend <- gpos[j, 2] - blast.index[i, "qEnd"] #g-b. negative
 
 
-          #update so that multiple rows are made for each j that aligns
-          b.add <- blast[pos,]
-          for(p in 1:length(pos)){
-            b.add[p,"qStart"] %<>% + dstart
-            b.add[p,"qEnd"] %<>% + dend
-            b.add[p,"sStart"] %<>% + dstart
-            b.add[p,"sEnd"] %<>% + dend
+            #update so that multiple rows are made for each j that aligns
+            b.add <- blast[pos,]
+            for(p in 1:length(pos)){
+              b.add[p,"qStart"] %<>% + dstart
+              b.add[p,"qEnd"] %<>% + dend
+              b.add[p,"sStart"] %<>% + dstart
+              b.add[p,"sEnd"] %<>% + dend
+            }
+            blast <- rbind(blast, b.add)
+
+
           }
-          blast <- rbind(blast, b.add)
-
-
         }
 
         #then remove original qpos spos rows

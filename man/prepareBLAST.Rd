@@ -4,8 +4,7 @@
 \alias{prepareBLAST}
 \title{Call series of functions to standardize BLAST table for computation.}
 \usage{
-prepareBLAST(blast, fasta, aln.size, use.doParallel = FALSE,
-  tofilter = TRUE)
+prepareBLAST(blast, fasta, aln.size, use.doParallel = FALSE, tofilter = TRUE)
 }
 \arguments{
 \item{blast}{Input tidied BLAST table.}

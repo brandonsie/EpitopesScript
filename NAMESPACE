@@ -2,6 +2,7 @@
 
 export(cycleBLAST)
 export(epFind2)
+export(epPB)
 export(epfind)
 export(epitopeBLAST)
 export(filterBLAST)

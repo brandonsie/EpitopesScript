@@ -29,6 +29,8 @@ epfind <- function(data = NULL, output.dir = NULL,
                    e.thresh = 0.01, g.method = "any", aln.size = 7,
                    peptide.once.per.group = TRUE,
                    min.groupsize = 2, min.consensus.pos = 1, consensus.thresh = c(75, 50),
+                   consensus.type = "Biostrings",
+                   consensus.thresh = c(100, 49),
                    peptide.nchar = 50, msa.width = "dynamic",
                    verbose = TRUE, pdflatex = TRUE, pdftk = TRUE, pdfuniter = TRUE, make.png = FALSE,
                    name.msa = "msa.pdf",
@@ -102,7 +104,9 @@ epfind <- function(data = NULL, output.dir = NULL,
   data.table::fwrite(peptide.name.map,
                      paste0(temp.dir, "peptide_name_map.txt"), sep = "\t")
 
-  blast1 <- selfBLASTaa(f1.path)
+  # blast1 <- selfBLASTaa(f1.path)
+  blast1 <- selfBLASTaa(f1.path) %>% (data.table::as.data.table) %>%
+    S4Vectors::rename("qseqid" = "qID", "sseqid" = "sID", "evalue" = "E", "qstart" = "qStart", "qend" = "qEnd", "sstart" = "sStart", "send" = "sEnd")
   b1.path <- paste0(temp.dir, "blast1.csv")
   data.table::fwrite(blast1, b1.path)
   if(nrow(blast1) == 0){
@@ -111,7 +115,7 @@ epfind <- function(data = NULL, output.dir = NULL,
 
   blast2 <- threshBLAST(blast1, e.thresh)
   b2.path <- paste0(temp.dir, "blast2.csv")
-  data.table::fwrite(blast2, b2.path)
+data.table::fwrite(blast2, b2.path)
   if(nrow(blast2) == 0){
     stop(paste(
       "Error: epfind: no BLAST alignments with e value below:", e.thresh))

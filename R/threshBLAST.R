@@ -7,6 +7,8 @@
 #' @export
 
 threshBLAST <- function(blast, e.thresh){
+  # blast <- blast %>% rename("evalue" = "E")
+  # blast <- blast[blast$evalue < as.numeric(e.thresh), ]
   blast <- blast[blast$E < as.numeric(e.thresh), ]
   if(nrow(blast) > 0){return(blast)}
 }

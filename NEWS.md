@@ -1,4 +1,6 @@
-# epitopefindr 1.1.27
+# epitopefindr 1.1.31 (2024-04-24)
+- working on version compatibility R packages from 2024
+
 
 ## Major Changes  
 - Added parameter `peptide.once.per.group` to `indexGroups()` (and also wrapper function `epfind()`) to control whether or not to restrict epitope groups to a maximum of one occurrence of a given peptide. Default value TRUE.  

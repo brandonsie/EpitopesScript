@@ -12,6 +12,10 @@ filterBLAST <- function(blast){ #remove singletons
 
   #remove self alignments
   filter <- blast[(blast$qID != blast$sID) | (grepl("\\.", blast$qID)), ]
+  # filter <- blast[(blast$qseqid != blast$sseqid) | (grepl("\\.", blast$qseqid)), ]
+
+
+
   # s <- setdiff(blast, filter)
   # s <- s[!(s$qID %in% filter$qID), ]
   # if(file.exists(spath)){

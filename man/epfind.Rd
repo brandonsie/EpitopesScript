@@ -5,25 +5,57 @@
 \alias{epFind2}
 \title{All-in-one function to call the major steps of epitopefindr.}
 \usage{
-epfind(data = NULL, output.dir = NULL, e.thresh = 0.01,
-  g.method = "any", aln.size = 7, min.groupsize = 2,
-  min.consensus.pos = 1, consensus.thresh = c(75, 50),
-  peptide.nchar = 50, msa.width = "dynamic", verbose = TRUE,
-  pdflatex = TRUE, pdftk = TRUE, pdfuniter = TRUE,
-  make.png = FALSE, name.msa = "msa.pdf",
+epfind(
+  data = NULL,
+  output.dir = NULL,
+  e.thresh = 0.01,
+  g.method = "any",
+  aln.size = 7,
+  peptide.once.per.group = TRUE,
+  min.groupsize = 2,
+  min.consensus.pos = 1,
+  consensus.type = "Biostrings",
+  consensus.thresh = c(100, 49),
+  peptide.nchar = 50,
+  msa.width = "dynamic",
+  verbose = TRUE,
+  pdflatex = TRUE,
+  pdftk = FALSE,
+  pdfuniter = TRUE,
+  make.png = FALSE,
+  name.msa = "msa.pdf",
   name.alignments = "finalAlignments.csv",
   name.epitopekey = "epitopeKey.csv",
-  name.epitopesum = "epitopeSummary.csv", use.doParallel = FALSE)
+  name.epitopesum = "epitopeSummary.csv",
+  use.doParallel = FALSE,
+  delete.intermediates = FALSE
+)
 
-epFind2(data = NULL, output.dir = NULL, e.thresh = 0.01,
-  g.method = "any", aln.size = 7, min.groupsize = 2,
-  min.consensus.pos = 1, consensus.thresh = c(75, 50),
-  peptide.nchar = 50, msa.width = "dynamic", verbose = TRUE,
-  pdflatex = TRUE, pdftk = TRUE, pdfuniter = TRUE,
-  make.png = FALSE, name.msa = "msa.pdf",
+epFind2(
+  data = NULL,
+  output.dir = NULL,
+  e.thresh = 0.01,
+  g.method = "any",
+  aln.size = 7,
+  peptide.once.per.group = TRUE,
+  min.groupsize = 2,
+  min.consensus.pos = 1,
+  consensus.type = "Biostrings",
+  consensus.thresh = c(100, 49),
+  peptide.nchar = 50,
+  msa.width = "dynamic",
+  verbose = TRUE,
+  pdflatex = TRUE,
+  pdftk = FALSE,
+  pdfuniter = TRUE,
+  make.png = FALSE,
+  name.msa = "msa.pdf",
   name.alignments = "finalAlignments.csv",
   name.epitopekey = "epitopeKey.csv",
-  name.epitopesum = "epitopeSummary.csv", use.doParallel = FALSE)
+  name.epitopesum = "epitopeSummary.csv",
+  use.doParallel = FALSE,
+  delete.intermediates = FALSE
+)
 }
 \arguments{
 \item{data}{Biostrings::AAStringset input sequences to search for epitopes, or path to corresponding .fasta file.}
@@ -36,9 +68,13 @@ epFind2(data = NULL, output.dir = NULL, e.thresh = 0.01,
 
 \item{aln.size}{Minimum length of alignment to consider from BLASTp alignments of 'data'.}
 
+\item{peptide.once.per.group}{Logical defining whether or not an epitope is constrained to only include one interval per contributing peptide. Default value TRUE. Only affects alignment mode = "any".}
+
 \item{min.groupsize}{Minimum number of peptides per group to require in order to print a group.}
 
 \item{min.consensus.pos}{Minimum number of amino acid consensus positions required in order to print a group.}
+
+\item{consensus.type}{"upperlower" or "Biostrings" type of msa consensus sequence to output}
 
 \item{consensus.thresh}{Two decreasing numeric values of upper and lower thresholds for sequence consensus.}
 
@@ -65,6 +101,8 @@ epFind2(data = NULL, output.dir = NULL, e.thresh = 0.01,
 \item{name.epitopesum}{Filename for output summary sheet of epitopes.}
 
 \item{use.doParallel}{Logical whether or not to use doParallel parallelization.}
+
+\item{delete.intermediates}{Logical whether or not to delete the intermediate_files folder at the end}
 }
 \description{
 All-in-one function to call the major steps of epitopefindr.

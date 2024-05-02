@@ -5,7 +5,9 @@
 \alias{epitopefindrEnv}
 \title{.onload
 Set stringsAsFactors FALSE for epitopefindr}
-\format{An object of class \code{environment} of length 0.}
+\format{
+An object of class \code{environment} of length 0.
+}
 \usage{
 epitopefindrEnv
 }

@@ -4,7 +4,13 @@
 \alias{indexGroups}
 \title{Group trimmed sequences into aligning groups}
 \usage{
-indexGroups(blast, fasta, mode = "any", aln.size)
+indexGroups(
+  blast,
+  fasta,
+  mode = "any",
+  aln.size,
+  peptide.once.per.group = TRUE
+)
 }
 \arguments{
 \item{blast}{BLAST alignment table to process.}
@@ -15,10 +21,12 @@ indexGroups(blast, fasta, mode = "any", aln.size)
 individual groups tending to have more members, such that in each group,
 each member must align with at least 1 "any" of the other members. "all"
 creates a larger number of groups, with individual groups tending to have
-fewer members, wuch taht in each group, each member must align with "all"
+fewer members, such that in each group, each member must align with "all"
 other members.}
 
 \item{aln.size}{Minimum length of alignment to consider from BLASTp alignments of 'data'.}
+
+\item{peptide.once.per.group}{Logical defining whether or not an epitope is constrained to only include one interval per contributing peptide. Default value TRUE. Only affects alignment mode = "any".}
 }
 \description{
 Group trimmed sequences into aligning groups

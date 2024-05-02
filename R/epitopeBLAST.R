@@ -23,7 +23,7 @@ epitopeBLAST <- function(data, aln.size){
   } else{blast.current <- blast}
 
 
-  # == == == == == B. Choose index peptide & imsadentify its epitopes. == =
+  # == == == == == B. Choose index peptide & identify its epitopes. == =
   index <- blast.current %>% chooseIndex()
   if(!("indexOrder" %in% names(data))){
     data$indexOrder <- index

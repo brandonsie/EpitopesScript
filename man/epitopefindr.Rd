@@ -3,7 +3,6 @@
 \docType{package}
 \name{epitopefindr}
 \alias{epitopefindr}
-\alias{epitopefindr-package}
 \title{epitopefindr: a package for identifying minimal overlaps from BLAST alignments.}
 \description{
 The purpose of this package is to describe the alignments among a set of

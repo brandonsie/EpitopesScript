@@ -14,7 +14,7 @@ The purpose of this package is to describe the [BLAST](https://blast.ncbi.nlm.ni
 
 # Setup:  
 1. Install [R (version 3.5+)](https://www.r-project.org/).  
-2. Install [BLAST+ (version 2.7.1+)](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download).  
+2. Install [BLAST+ (version 2.7.1)](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download). (Note: we observed some issues with BLAST+ ~2.10. If you have success with newer versions of blast please let us know and we will update this guide.)
 3. In R console, execute: 
 ``` r  
 

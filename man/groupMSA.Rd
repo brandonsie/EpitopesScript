@@ -4,10 +4,20 @@
 \alias{groupMSA}
 \title{Generate pdf multiple sequence alignment logos for identified aligning groups.}
 \usage{
-groupMSA(groups, mpath = "intermediate_files/msa/", min.groupsize = 2,
-  min.consensus.pos = 1, consensus.thresh = c(75, 50),
-  peptide.nchar = 50, msa.width = "dynamic", pdflatex = TRUE,
-  pdftk = TRUE, pdfuniter = FALSE, make.png = FALSE)
+groupMSA(
+  groups,
+  mpath = "intermediate_files/msa/",
+  min.groupsize = 2,
+  min.consensus.pos = 1,
+  consensus.type = "Biostrings",
+  consensus.thresh = c(100, 49),
+  peptide.nchar = 50,
+  msa.width = "dynamic",
+  pdflatex = TRUE,
+  pdftk = TRUE,
+  pdfuniter = FALSE,
+  make.png = FALSE
+)
 }
 \arguments{
 \item{groups}{Table of final peptides and pre-calculated groupings.}
@@ -18,7 +28,9 @@ groupMSA(groups, mpath = "intermediate_files/msa/", min.groupsize = 2,
 
 \item{min.consensus.pos}{Minimum number of amino acid consensus positions required in order to print a group.}
 
-\item{consensus.thresh}{Two decreasing numeric values of upper and lower thresholds for sequence consensus.}
+\item{consensus.type}{"upperlower" or "Biostrings" type of msa consensus sequence to output}
+
+\item{consensus.thresh}{Two decreasing numeric values of upper and lower thresholds for sequence consensus. ONly valid for consensus.type == "upperlower".}
 
 \item{peptide.nchar}{Maximum of character from peptide name to use in msa output. Default 50. Starts from left.}
 
